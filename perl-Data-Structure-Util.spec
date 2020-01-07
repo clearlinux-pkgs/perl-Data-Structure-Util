@@ -4,13 +4,13 @@
 #
 Name     : perl-Data-Structure-Util
 Version  : 0.16
-Release  : 11
+Release  : 12
 URL      : https://cpan.metacpan.org/authors/id/A/AN/ANDYA/Data-Structure-Util-0.16.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/A/AN/ANDYA/Data-Structure-Util-0.16.tar.gz
 Summary  : 'Change nature of data within a structure'
 Group    : Development/Tools
 License  : Artistic-1.0-Perl
-Requires: perl-Data-Structure-Util-lib = %{version}-%{release}
+Requires: perl-Data-Structure-Util-perl = %{version}-%{release}
 BuildRequires : buildreq-cpan
 BuildRequires : perl(Test::Pod)
 
@@ -20,29 +20,31 @@ This module provides useful method to modify the nature of data within a structu
 %package dev
 Summary: dev components for the perl-Data-Structure-Util package.
 Group: Development
-Requires: perl-Data-Structure-Util-lib = %{version}-%{release}
 Provides: perl-Data-Structure-Util-devel = %{version}-%{release}
+Requires: perl-Data-Structure-Util = %{version}-%{release}
 
 %description dev
 dev components for the perl-Data-Structure-Util package.
 
 
-%package lib
-Summary: lib components for the perl-Data-Structure-Util package.
-Group: Libraries
+%package perl
+Summary: perl components for the perl-Data-Structure-Util package.
+Group: Default
+Requires: perl-Data-Structure-Util = %{version}-%{release}
 
-%description lib
-lib components for the perl-Data-Structure-Util package.
+%description perl
+perl components for the perl-Data-Structure-Util package.
 
 
 %prep
 %setup -q -n Data-Structure-Util-0.16
+cd %{_builddir}/Data-Structure-Util-0.16
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
+export LANG=C.UTF-8
 if test -f Makefile.PL; then
 %{__perl} Makefile.PL
 make  %{?_smp_mflags}
@@ -52,7 +54,7 @@ else
 fi
 
 %check
-export LANG=C
+export LANG=C.UTF-8
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
@@ -72,13 +74,13 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files
 %defattr(-,root,root,-)
-/usr/lib/perl5/vendor_perl/5.28.2/x86_64-linux-thread-multi/Data/Structure/Util.pm
-/usr/lib/perl5/vendor_perl/5.28.2/x86_64-linux-thread-multi/auto/Data/Structure/Util/autosplit.ix
 
 %files dev
 %defattr(-,root,root,-)
 /usr/share/man/man3/Data::Structure::Util.3
 
-%files lib
+%files perl
 %defattr(-,root,root,-)
-/usr/lib/perl5/vendor_perl/5.28.2/x86_64-linux-thread-multi/auto/Data/Structure/Util/Util.so
+/usr/lib/perl5/vendor_perl/5.30.1/x86_64-linux-thread-multi/Data/Structure/Util.pm
+/usr/lib/perl5/vendor_perl/5.30.1/x86_64-linux-thread-multi/auto/Data/Structure/Util/Util.so
+/usr/lib/perl5/vendor_perl/5.30.1/x86_64-linux-thread-multi/auto/Data/Structure/Util/autosplit.ix
