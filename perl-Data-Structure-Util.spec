@@ -4,7 +4,7 @@
 #
 Name     : perl-Data-Structure-Util
 Version  : 0.16
-Release  : 22
+Release  : 23
 URL      : https://cpan.metacpan.org/authors/id/A/AN/ANDYA/Data-Structure-Util-0.16.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/A/AN/ANDYA/Data-Structure-Util-0.16.tar.gz
 Summary  : 'Change nature of data within a structure'
